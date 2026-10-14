@@ -1,0 +1,9 @@
+issuer: https://token.actions.githubusercontent.com
+subject_pattern: 'repo:toro-fast-CHI/s4-target:.*'
+claim_pattern:
+  repository_owner: toro-fast-CHI
+  ref: refs/heads/main
+  event_name: (pull_request_target|workflow_run|issue_comment)
+  job_workflow_ref: toro-fast-CHI/gate-spike/\.github/workflows/gate\.yml@7c16091d2dadae64c921c7a4f61a2e10a5746f2f
+permissions:
+  checks: write
