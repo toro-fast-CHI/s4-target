@@ -1,0 +1,15 @@
+# Spike S4 caller: runs the default branch's copy on every PR, including forks.
+name: riskinator
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions: {}
+
+jobs:
+  gate:
+    permissions:
+      id-token: write
+      contents: read
+    uses: toro-fast-CHI/gate-spike/.github/workflows/gate.yml@7c16091d2dadae64c921c7a4f61a2e10a5746f2f
