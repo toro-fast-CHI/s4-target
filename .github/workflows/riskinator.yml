@@ -1,4 +1,5 @@
-# Spike S4 caller: runs the default branch's copy on every PR, including forks.
+# Spike S4 attack T3b: the PR rewrites the caller. pull_request_target must run
+# the default branch's copy, so this job must never appear.
 name: riskinator
 
 on:
@@ -8,8 +9,7 @@ on:
 permissions: {}
 
 jobs:
-  gate:
-    permissions:
-      id-token: write
-      contents: read
-    uses: toro-fast-CHI/gate-spike/.github/workflows/gate.yml@52ed30eebe0c15bb398edd8bdb619aea09f99826
+  pwned:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo "PWNED-CALLER this must never run"
