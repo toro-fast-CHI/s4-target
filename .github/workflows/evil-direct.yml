@@ -1,0 +1,28 @@
+# Spike S4 attack T2: a PR-added pull_request workflow asks octo-sts for the
+# riskinator identity directly. The exchange must be refused.
+name: evil-direct
+
+on:
+  pull_request:
+
+permissions: {}
+
+jobs:
+  steal:
+    runs-on: ubuntu-24.04
+    permissions:
+      id-token: write
+    steps:
+      - name: Try to get a riskinator token
+        env:
+          REPO: ${{ github.repository }}
+        run: |
+          set -uo pipefail
+          oidc=$(curl -fsS -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=octo-sts.dev" | jq -r .value)
+          echo "::add-mask::$oidc"
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $oidc" \
+            "https://octo-sts.dev/sts/exchange?scope=$REPO&identity=riskinator")
+          echo "exchange status: $code"
+          if [ "$code" = "200" ]; then echo "ATTACK SUCCEEDED"; exit 1; fi
+          echo "attack refused as expected"
