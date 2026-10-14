@@ -1,5 +1,5 @@
 issuer: https://token.actions.githubusercontent.com
-subject_pattern: 'repo:toro-fast-CHI/s4-target:.*'
+subject_pattern: 'repo:toro-fast-CHI@342255932/s4-target@1418311837:.*'
 claim_pattern:
   repository_owner: toro-fast-CHI
   ref: refs/heads/main
