@@ -1,0 +1,15 @@
+# Spike S4 review relay, part 1: unprivileged. Its only job is to exist and
+# complete so riskinator-relay runs from the default branch.
+name: riskinator-review
+
+on:
+  pull_request_review:
+    types: [submitted, dismissed]
+
+permissions: {}
+
+jobs:
+  signal:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "review event recorded"
