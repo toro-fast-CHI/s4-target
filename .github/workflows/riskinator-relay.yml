@@ -14,4 +14,4 @@ jobs:
     permissions:
       id-token: write
       contents: read
-    uses: toro-fast-CHI/gate-spike/.github/workflows/gate.yml@7c16091d2dadae64c921c7a4f61a2e10a5746f2f
+    uses: toro-fast-CHI/gate-spike/.github/workflows/gate.yml@52ed30eebe0c15bb398edd8bdb619aea09f99826
