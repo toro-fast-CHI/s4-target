@@ -1,0 +1,16 @@
+# Spike S4 attack T3: a PR-added pull_request workflow calls the legitimate
+# central gate. job_workflow_ref matches, but ref and event_name do not, so the
+# exchange must be refused (the gate job fails with exchange status 403).
+name: evil-reuse
+
+on:
+  pull_request:
+
+permissions: {}
+
+jobs:
+  gate:
+    permissions:
+      id-token: write
+      contents: read
+    uses: toro-fast-CHI/gate-spike/.github/workflows/gate.yml@52ed30eebe0c15bb398edd8bdb619aea09f99826
